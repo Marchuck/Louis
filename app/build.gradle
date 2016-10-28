@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
-//apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'com.neenbedankt.android-apt'
+//apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 24
@@ -12,14 +14,6 @@ android {
         versionCode 1
         versionName "1.0"
 
-        jackOptions {
-            enabled true
-        }
-
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
     }
     buildTypes {
         release {
@@ -27,12 +21,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-
 
     compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
     compile "com.android.support:design:$rootProject.ext.supportLibraryVersion"
@@ -40,19 +37,18 @@ dependencies {
     compile "com.android.support:cardview-v7:$rootProject.ext.supportLibraryVersion"
     compile "com.android.support:percent:$rootProject.ext.supportLibraryVersion"
 
+    compile 'com.google.maps.android:android-maps-utils:0.3.4'
+    compile "com.google.android.gms:play-services-location:$rootProject.ext.GOOGLE_PLAY_VERSION"
+    compile "com.google.android.gms:play-services-maps:$rootProject.ext.GOOGLE_PLAY_VERSION"
 
-//    apt 'com.jakewharton:butterknife-compiler:8.4.0'
-
-    //runtime permissions
-
-
+    compile 'com.jakewharton:butterknife:8.4.0'
+    apt 'com.jakewharton:butterknife-compiler:8.4.0'
     compile 'agency.tango.android:material-intro-screen:0.0.4'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.0.1'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.0.1'
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'io.reactivex:rxjava:1.1.6'
-    compile 'com.jakewharton:butterknife:8.4.0'
     compile 'com.karumi:dexter:2.3.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.android.support:support-v4:24.2.1'

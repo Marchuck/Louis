@@ -17,8 +17,6 @@ import java.util.Iterator;
 import java.util.concurrent.Callable;
 
 import pl.kitowcy.louis.R;
-import pl.kitowcy.louis.facedetection.facedetection.EmotionRestClient;
-import pl.kitowcy.louis.facedetection.facedetection.models.FaceAnalysis;
 import rx.Observable;
 import rx.Subscriber;
 

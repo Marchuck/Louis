@@ -3,10 +3,10 @@ package pl.kitowcy.louis.facedetection;
 import android.net.Uri;
 import android.util.Log;
 
-import pl.kitowcy.louis.facedetection.facedetection.EmotionRestClient;
-import pl.kitowcy.louis.facedetection.facedetection.ResponseCallback;
-import pl.kitowcy.louis.facedetection.facedetection.models.FaceAnalysis;
-import pl.kitowcy.louis.facedetection.facedetection.models.Scores;
+import pl.kitowcy.louis.facedetection.api.EmotionRestClient;
+import pl.kitowcy.louis.facedetection.api.ResponseCallback;
+import pl.kitowcy.louis.facedetection.api.models.FaceAnalysis;
+import pl.kitowcy.louis.facedetection.api.models.Scores;
 
 /**
  * Project "Louis"

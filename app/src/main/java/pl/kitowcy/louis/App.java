@@ -4,7 +4,7 @@ import android.app.Application;
 
 import com.karumi.dexter.Dexter;
 
-import pl.kitowcy.louis.facedetection.facedetection.EmotionRestClient;
+import pl.kitowcy.louis.facedetection.api.EmotionRestClient;
 
 
 /**

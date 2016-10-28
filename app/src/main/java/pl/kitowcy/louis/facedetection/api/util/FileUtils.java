@@ -1,4 +1,4 @@
-package pl.kitowcy.louis.facedetection.facedetection.util;
+package pl.kitowcy.louis.facedetection.api.util;
 
 import android.graphics.Bitmap;
 import android.net.Uri;

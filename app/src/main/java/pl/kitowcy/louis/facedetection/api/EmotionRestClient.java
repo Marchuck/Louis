@@ -1,4 +1,4 @@
-package pl.kitowcy.louis.facedetection.facedetection;
+package pl.kitowcy.louis.facedetection.api;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -9,15 +9,14 @@ import com.google.gson.JsonObject;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.concurrent.Callable;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
 import pl.kitowcy.louis.R;
-import pl.kitowcy.louis.facedetection.facedetection.models.FaceAnalysis;
-import pl.kitowcy.louis.facedetection.facedetection.util.FileUtils;
-import pl.kitowcy.louis.facedetection.facedetection.util.NetworkUtils;
+import pl.kitowcy.louis.facedetection.api.models.FaceAnalysis;
+import pl.kitowcy.louis.facedetection.api.util.FileUtils;
+import pl.kitowcy.louis.facedetection.api.util.NetworkUtils;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

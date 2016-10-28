@@ -1,9 +1,9 @@
-package pl.kitowcy.louis.facedetection.facedetection;
+package pl.kitowcy.louis.facedetection.api;
 
 import com.google.gson.JsonObject;
 
 import okhttp3.RequestBody;
-import pl.kitowcy.louis.facedetection.facedetection.models.FaceAnalysis;
+import pl.kitowcy.louis.facedetection.api.models.FaceAnalysis;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Header;

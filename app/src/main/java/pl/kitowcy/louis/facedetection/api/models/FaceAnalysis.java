@@ -1,4 +1,4 @@
-package pl.kitowcy.louis.facedetection.facedetection.models;
+package pl.kitowcy.louis.facedetection.api.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;

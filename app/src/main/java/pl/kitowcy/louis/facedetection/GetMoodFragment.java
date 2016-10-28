@@ -20,10 +20,13 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import pl.kitowcy.louis.R;
-import pl.kitowcy.louis.facedetection.facedetection.EmotionRestClient;
-import pl.kitowcy.louis.facedetection.facedetection.models.FaceAnalysis;
-import pl.kitowcy.louis.facedetection.facedetection.models.Scores;
+import pl.kitowcy.louis.facedetection.api.EmotionRestClient;
+import pl.kitowcy.louis.facedetection.api.models.FaceAnalysis;
+import pl.kitowcy.louis.facedetection.api.models.Scores;
 import pl.kitowcy.louis.utils.Common;
 import rx.schedulers.Schedulers;
 
@@ -33,8 +36,10 @@ public class GetMoodFragment extends Fragment {
     public static final String TAG = GetMoodFragment.class.getSimpleName();
     public static final int PHOTO_TAKE = 2137;
 
+    @BindView(R.id.fragment_get_mood_camera_fab)
     FloatingActionButton fab;
 
+    @OnClick(R.id.fragment_get_mood_camera_fab)
     void onCameraClick() {
         Dexter.checkPermissions(new MultiplePermissionsListener() {
                                     @Override
@@ -79,7 +84,7 @@ public class GetMoodFragment extends Fragment {
                         Log.d(TAG, "onNext: ");
                         for (FaceAnalysis analysis : faceAnalysises) {
                             Log.d(TAG, "onSuccess: ");
-                            Scores scores = analysis.getScores();
+                            Scores scores = analysis.getScores().scaleWith(1000);
                             if (scores != null) {
                                 Log.d(TAG, "anger: " + scores.getAnger());
                                 Log.d(TAG, "contempt: " + scores.getContempt());
@@ -122,10 +127,11 @@ public class GetMoodFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_get_mood, container, false);
-       fab = (FloatingActionButton)v.findViewById(R.id.fragment_get_mood_camera_fab);
-        fab.setOnClickListener(v1 -> onCameraClick());
-        return v;
+        View view = inflater.inflate(R.layout.fragment_get_mood, container, false);
+        ButterKnife.bind(this, view);
+        //  fab = (FloatingActionButton)v.findViewById(R.id.fragment_get_mood_camera_fab);
+        //   fab.setOnClickListener(v1 -> onCameraClick());
+        return view;
     }
 
 }
