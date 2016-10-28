@@ -21,22 +21,15 @@ public class MainActivity extends AppIntro {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
 
         addSlide(NameFragment.newInstance());
+        addSlide(GetMoodFragment.newInstance());
         addSlide(
                 AppIntroFragment.newInstance("Hello, I'm Louis", "We need to know each other C:",
                         android.R.drawable.ic_media_play, ContextCompat.getColor(this, android.R.color.holo_orange_dark)));
         addSlide(
                 AppIntroFragment.newInstance("tutaj", "jest ostatni moj slajdzik opis",
                         android.R.drawable.arrow_up_float, ContextCompat.getColor(this, android.R.color.holo_red_dark)));
-
-        setContentView(R.layout.activity_main);
-
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.rootLayout, GetMoodFragment.newInstance(), GetMoodFragment.TAG)
-                .commitAllowingStateLoss();
     }
 
     @Override
