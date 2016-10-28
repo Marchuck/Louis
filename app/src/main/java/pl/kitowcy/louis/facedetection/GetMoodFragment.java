@@ -90,8 +90,6 @@ public class GetMoodFragment extends Fragment {
                             }
                         }
                     }, throwable -> Log.e(TAG, "onError: ", throwable));
-
-
         }
     }
 
