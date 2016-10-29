@@ -63,11 +63,5 @@
             android:textColor="@color/colorPrimary"
             tools:text="godz. 19.00" />
 
-        <SeekBar
-            android:id="@+id/radiusChanger"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:padding="16sp" />
     </RelativeLayout>
 </RelativeLayout>

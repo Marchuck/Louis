@@ -2,10 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="40sp"
-    android:layout_marginLeft="40sp"
-    android:layout_marginRight="40sp"
-    android:layout_marginTop="40sp"
+    android:layout_marginBottom="16sp"
+    android:layout_marginLeft="16sp"
+    android:layout_marginRight="16sp"
+    android:layout_marginTop="16sp"
     tools:context="pl.kitowcy.louis.mapsy.MyLocationFragment">
 
 
@@ -16,58 +16,48 @@
         android:layout_centerInParent="true"
         android:visibility="gone" />
 
+    <TextView
+        android:textSize="24sp"
+        android:id="@+id/title_my_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="choose place" />
+
     <RelativeLayout
         android:id="@+id/map_layout"
         android:layout_width="match_parent"
-        android:layout_height="300sp" />
+        android:layout_height="400sp"
+        android:layout_below="@+id/title_my_location" />
 
     <RelativeLayout
-        android:id="@+id/changeRadiusFragment"
+        android:id="@+id/bottom_choose_distance"
         android:layout_width="match_parent"
-        android:layout_height="100sp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_below="@+id/map_layout">
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8sp"
-            android:textSize="22sp"
-            tools:text="xd XD :DDDDD" />
+        <ImageView
+            android:id="@+id/immediate"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:background="@color/colorPrimary" />
 
-        <TextView
-            android:id="@+id/description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/title"
-            android:padding="8sp"
-            tools:text="lorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsum" />
+        <ImageView
+            android:id="@+id/near"
 
-        <TextView
-            android:id="@+id/address"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/description"
-            android:textColor="@color/colorPrimary"
-            tools:text="ul Jana Pawła II" />
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:layout_centerHorizontal="true"
+            android:background="@color/colorPrimary" />
 
-        <TextView
-            android:id="@+id/hour"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/far"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/description"
-            android:textColor="@color/colorPrimary"
-            tools:text="godz. 19.00" />
+            android:background="@color/colorPrimary" />
 
-        <SeekBar
-            android:id="@+id/radiusChanger"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:padding="16sp" />
     </RelativeLayout>
+
 </RelativeLayout>

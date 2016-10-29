@@ -1,18 +1,21 @@
 package pl.kitowcy.louis.mapsy;
 
 
+import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -63,31 +66,35 @@ public class MyLocationFragment extends Fragment implements MultiplePermissionsL
     GoogleMap googleMap;
     LatLng myPosition = null;
     boolean locationServiceRegistered;
-    int meters = 10;
+    boolean locationReceived;
+    boolean initonce;
+    int meters = 5 * 1000;
     public BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.d(TAG, "onReceive: ");
-
-
-            progressbar_location.setVisibility(View.GONE);
-
-            Log.d(TAG, "onReceive: new Location");
             Bundle extras = intent.getExtras();
             myPosition = new LatLng(extras.getDouble("Latitude"), extras.getDouble("Longitude"));
 
-            CameraPosition cameraPosition = new CameraPosition(myPosition, 11, 60, 12);
-            final CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
-
-            getGoogleMap().animateCamera(cameraUpdate);
-            onRadiusChanged(meters);
-
-            //  locationReallyChanged = (locationReallyChanged + 1) % 5;
+            doOnLocationReceived();
+            locationReceived = true;
         }
     };
 
+    private void doOnLocationReceived() {
+        progressbar_location.setVisibility(View.GONE);
 
-    void onRadiusChanged(int meters) {
+        Log.d(TAG, "onReceive: new Location");
+        CameraPosition cameraPosition = new CameraPosition(myPosition, 11, 60, 12);
+        final CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
+
+        getGoogleMap().animateCamera(cameraUpdate);
+
+        onRadiusChanged();
+    }
+
+
+    void onRadiusChanged() {
         Log.d(TAG, "onRadiusChanged: ");
         if (getGoogleMap() != null && myPosition != null) {
             Log.d(TAG, "onRadiusChanged, invoked ");
@@ -101,17 +108,47 @@ public class MyLocationFragment extends Fragment implements MultiplePermissionsL
         }
     }
 
-    @BindView(R.id.radiusChanger)
-    SeekBar seekBar;
-
-    @BindView(R.id.title)
+    @BindView(R.id.title_my_location)
     TextView title;
 
-    @BindView(R.id.description)
-    TextView description;
+    @BindView(R.id.immediate)
+    ImageView immediate;
+
+    @OnClick(R.id.immediate)
+    void onImmediate() {
+        Log.d(TAG, "onImmediate: ");
+        meters = 1000;
+        onRadiusChanged();
+    }
+
+    @BindView(R.id.near)
+    ImageView near;
+
+    @OnClick(R.id.near)
+    void onNear() {
+        Log.d(TAG, "onNear: ");
+        meters = 5 * 1000;
+        onRadiusChanged();
+    }
+
+    @BindView(R.id.far)
+    ImageView far;
+
+    @OnClick(R.id.far)
+    void onFar() {
+        Log.d(TAG, "onFar: ");
+        meters = 10 * 1000;
+        onRadiusChanged();
+    }
 
     @BindView(R.id.progressbar_location)
     ProgressBar progressbar_location;
+
+    @Override
+    public void onResume() {
+        Log.d(TAG, "onResume: ");
+        super.onResume();
+    }
 
     @Override
     public void onPause() {
@@ -127,22 +164,7 @@ public class MyLocationFragment extends Fragment implements MultiplePermissionsL
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle sis) {
         View view = inflater.inflate(R.layout.fragment_my_location, container, false);
         unbinder = ButterKnife.bind(this, view);
-
-        seekBar.setMax(10 * 1000);//10 km
-
-        ViewBindings
-                .seekBarProgress(seekBar)
-                .map(progress -> {
-                    meters = progress + 10;
-                    return meters;
-                })
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new CalmSubscriber<>(TAG));
-        Dexter.checkPermissions(this,
-                android.Manifest.permission.ACCESS_NETWORK_STATE,
-                android.Manifest.permission.ACCESS_COARSE_LOCATION,
-                android.Manifest.permission.ACCESS_FINE_LOCATION);
+        Log.d(TAG, "onCreateView: ");
         return view;
     }
 
@@ -153,6 +175,14 @@ public class MyLocationFragment extends Fragment implements MultiplePermissionsL
         getActivity().registerReceiver(receiver, filter);
         getActivity().startService(new Intent(getActivity(), LocationService.class));
         locationServiceRegistered = true;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (locationReceived) {
+
+        }
     }
 
     private SupportMapFragment getSupportMapFragment() {
@@ -171,8 +201,9 @@ public class MyLocationFragment extends Fragment implements MultiplePermissionsL
     }
 
     @Override
-    public void onPermissionsChecked(MultiplePermissionsReport report) {
+    public void onPermissionsChecked(MultiplePermissionsReport ignored) {
         Log.d(TAG, "onPermissionsChecked: ");
+
         progressbar_location.setVisibility(View.VISIBLE);
 
         getActivity().getSupportFragmentManager()
@@ -198,6 +229,17 @@ public class MyLocationFragment extends Fragment implements MultiplePermissionsL
 
     @Override
     public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+        Log.d(TAG, "onPermissionRationaleShouldBeShown: ");
+        onPause();
+        getActivity().finish();
+    }
 
+    public void initOnce() {
+        Log.d(TAG, "initOnce: ");
+        if (initonce) return;
+        initonce = true;
+        Dexter.checkPermissions(this, Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_WIFI_STATE);
     }
 }

@@ -1,10 +1,14 @@
 package pl.kitowcy.louis.facedetection;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.Settings;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -23,11 +27,13 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import pl.kitowcy.louis.MainActivity;
 import pl.kitowcy.louis.R;
 import pl.kitowcy.louis.facedetection.api.EmotionRestClient;
 import pl.kitowcy.louis.facedetection.api.models.FaceAnalysis;
 import pl.kitowcy.louis.facedetection.api.models.Scores;
 import pl.kitowcy.louis.utils.Common;
+import pl.kitowcy.louis.utils.ErrorDialog;
 import rx.schedulers.Schedulers;
 
 
@@ -36,18 +42,40 @@ public class GetMoodFragment extends Fragment {
     public static final String TAG = GetMoodFragment.class.getSimpleName();
     public static final int PHOTO_TAKE = 2137;
 
+
+    Dialog permissionsDialog;
     @BindView(R.id.fragment_get_mood_camera_fab)
     FloatingActionButton fab;
 
     @OnClick(R.id.fragment_get_mood_camera_fab)
     void onCameraClick() {
+        if (Dexter.isRequestOngoing()) return;
+
         Dexter.checkPermissions(new MultiplePermissionsListener() {
                                     @Override
                                     public void onPermissionsChecked(MultiplePermissionsReport report) {
                                         Log.d(TAG, "onPermissionsChecked: ");
-                                        Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                                        getActivity().startActivityForResult(takePicture, PHOTO_TAKE);
-                                        //zero can be replaced with any action code
+                                        try {
+                                            Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                            getActivity().startActivityForResult(takePicture, PHOTO_TAKE);
+                                        } catch (SecurityException exception) {
+                                            Log.e(TAG, "onPermissionsChecked: ", exception);
+                                            permissionsDialog = new ErrorDialog(getActivity())
+                                                    .withMessage("Enable camera, let me detect your mood")
+                                                    .setPositiveButton("Ok", (dialog, which) -> {
+                                                        onCameraClick();
+                                                        dismissDialog();
+                                                    })
+//                                                    .setNeutralButton("Cancel", (dialog, which) -> {
+//                                                    //    startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+//                                                        dialog.dismiss();
+//                                                    })
+                                                    .setNegativeButton("Close App", (dialog, which) -> {
+                                                        dialog.dismiss();
+                                                        getActivity().finish();
+                                                    });
+                                            permissionsDialog.show();
+                                        }
                                     }
 
                                     @Override
@@ -59,6 +87,19 @@ public class GetMoodFragment extends Fragment {
                                 },
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.CAMERA);
+    }
+
+    void dismissDialog() {
+        if (permissionsDialog != null) {
+            permissionsDialog.dismiss();
+            permissionsDialog = null;
+        }
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        getParentActivity().onPageSelected(true);
     }
 
     void enterStuffManually() {
@@ -143,4 +184,7 @@ public class GetMoodFragment extends Fragment {
         return view;
     }
 
+    public MainActivity getParentActivity() {
+        return ((MainActivity) getActivity());
+    }
 }
