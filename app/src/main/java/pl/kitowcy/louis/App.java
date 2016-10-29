@@ -5,6 +5,7 @@ import android.app.Application;
 import com.karumi.dexter.Dexter;
 
 import pl.kitowcy.louis.facedetection.api.EmotionRestClient;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 
 /**
@@ -19,5 +20,14 @@ public class App extends Application {
         super.onCreate();
         Dexter.initialize(this);
         EmotionRestClient.init(this, getString(R.string.microsoft_emotion_key));
+        setFont();
+    }
+
+    private void setFont() {
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/rounded_elegance.ttf")
+                .setFontAttrId(R.attr.fontPath)
+                .build()
+        );
     }
 }
