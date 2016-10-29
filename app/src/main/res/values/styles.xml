@@ -15,4 +15,8 @@
         <item name="android:textSize">@dimen/title_large_text</item>
     </style>
 
+    <style name="MarkerCustomTextStyle" parent="android:TextAppearance.Small">
+        <item name="android:fontFamily">monospace</item>
+    </style>
+
 </resources>

@@ -2,15 +2,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background="@color/location"
     tools:context="pl.kitowcy.louis.facedetection.GetMoodFragment">
 
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fragment_get_mood_camera_fab"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="8sp"
+        android:text="First, I'll need some info about you"
+        android:textSize="24sp" />
+
+    <ImageView
+        android:id="@+id/fragment_get_mood_camera_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="300sp"
         android:layout_centerInParent="true"
-        android:layout_margin="@dimen/activity_horizontal_margin" />
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:src="@drawable/image_mirror" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment_get_mood_camera_fab"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="8sp"
+        android:text="Let me look at you I'll check your mood :-) "
+        android:textSize="24sp" />
 
 </RelativeLayout>

@@ -56,4 +56,5 @@ dependencies {
     compile 'com.github.paolorotolo:appintro:4.1.0'
     compile 'uk.co.chrisjenx:calligraphy:2.2.0'
     compile 'com.daprlabs.aaron:swipedeck:2.0.6'
+    compile "com.github.bq:markerseekbar:v0.9"
 }

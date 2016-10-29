@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
@@ -45,11 +46,11 @@ public class GetMoodFragment extends Fragment {
 
     Dialog permissionsDialog;
     @BindView(R.id.fragment_get_mood_camera_fab)
-    FloatingActionButton fab;
+    ImageView fab;
 
     @OnClick(R.id.fragment_get_mood_camera_fab)
     void onCameraClick() {
-        if (Dexter.isRequestOngoing()) return;
+        if (!Dexter.isRequestOngoing()) return;
 
         Dexter.checkPermissions(new MultiplePermissionsListener() {
                                     @Override
@@ -89,6 +90,7 @@ public class GetMoodFragment extends Fragment {
                 Manifest.permission.CAMERA);
     }
 
+
     void dismissDialog() {
         if (permissionsDialog != null) {
             permissionsDialog.dismiss();
@@ -121,7 +123,6 @@ public class GetMoodFragment extends Fragment {
             android.net.Uri selectedImage = imageIntent.getData();
             Log.i(TAG, "onActivityResult: xDDD");
 
-
             Context ctx = getActivity();
             Common.uriToDrawable(ctx, selectedImage)
                     .flatMap(Common::drawableToBitmap)
@@ -136,12 +137,21 @@ public class GetMoodFragment extends Fragment {
                             Log.d(TAG, "onSuccess: ");
                             Scores scores = analysis.getScores().scaleWith(1000);
                             if (scores != null) {
+                                Log.d(TAG, "onActivityResult: ");
+
                                 Log.d(TAG, "anger: " + scores.getAnger());
-                                Log.d(TAG, "contempt: " + scores.getContempt());
+                                Log.d(TAG, "fear: " + scores.getFear());
                                 Log.d(TAG, "disgust: " + scores.getDisgust());
                                 Log.d(TAG, "happiness: " + scores.getHappiness());
                                 Log.d(TAG, "sadness: " + scores.getSadness());
                                 Log.d(TAG, "surprise: " + scores.getSurprise());
+                                getActivity().getSupportFragmentManager()
+                                        .beginTransaction()
+                                        .add(R.id.rootLayoutBase, ManuallyEnteredMoodFragment
+                                                .newInstance())
+                                        .commitAllowingStateLoss();
+
+
                             }
                         }
                     }, throwable -> Log.e(TAG, "onError: ", throwable));

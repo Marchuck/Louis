@@ -1,20 +1,139 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/location"
     tools:context=".facedetection.ManuallyEnteredMoodFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/your_mood_summary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:textSize="20sp"
-        tools:text="excitement" />
+        android:layout_margin="8sp"
+        android:textSize="24sp"
+        tools:text="I see you're" />
 
-    <SeekBar
-        android:id="@+id/excited_seekbar"
+    <TextView
+
+        android:id="@+id/surprise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/your_mood_summary"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="8sp"
+        android:text="surprise"
+        android:textSize="20sp" />
+
+    <com.bq.markerseekbar.MarkerSeekBar
+
+        android:id="@+id/seekbar_surprise"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/activity_horizontal_margin" />
+        android:layout_below="@+id/surprise"
+        android:max="100"
+        android:padding="8sp"
+        app:markerColor="@color/colorPrimary"
+        app:markerTextAppearance="@style/MarkerCustomTextStyle"
+        app:markerTextColor="#ffffff"
+        app:smoothTracking="true" />
+
+    <TextView
+        android:id="@+id/happiness"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/seekbar_surprise"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="8sp"
+        android:text="happiness"
+        android:textSize="20sp" />
+
+    <com.bq.markerseekbar.MarkerSeekBar
+        android:id="@+id/seekbar_happiness"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/happiness"
+        android:max="100"
+        android:padding="8sp"
+        app:markerColor="@color/colorPrimary"
+        app:markerTextAppearance="@style/MarkerCustomTextStyle"
+        app:markerTextColor="#ffffff"
+        app:smoothTracking="true" />
+
+    <TextView
+        android:id="@+id/disgust"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/seekbar_happiness"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="8sp"
+        android:text="disgust"
+        android:textSize="20sp" />
+
+    <com.bq.markerseekbar.MarkerSeekBar
+        android:id="@+id/seekbar_disgust"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/disgust"
+        android:max="100"
+        android:padding="8sp"
+        app:markerColor="@color/colorPrimary"
+        app:markerTextAppearance="@style/MarkerCustomTextStyle"
+        app:markerTextColor="#ffffff"
+        app:smoothTracking="true" />
+
+
+    <TextView
+        android:id="@+id/sadness"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/seekbar_disgust"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="8sp"
+        android:text="sadness"
+        android:textSize="20sp" />
+
+    <com.bq.markerseekbar.MarkerSeekBar
+        android:id="@+id/seekbar_sadness"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sadness"
+        android:max="100"
+        android:padding="8sp"
+        app:markerColor="@color/colorPrimary"
+        app:markerTextAppearance="@style/MarkerCustomTextStyle"
+        app:markerTextColor="#ffffff"
+        app:smoothTracking="true" />
+
+    <!--<TextView-->
+        <!--android:id="@+id/fear"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/seekbar_sadness"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_margin="8sp"-->
+        <!--android:text="fear"-->
+        <!--android:textSize="20sp" />-->
+
+    <!--<com.bq.markerseekbar.MarkerSeekBar-->
+        <!--android:id="@+id/seekbar_fear"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/fear"-->
+        <!--android:max="100"-->
+        <!--android:padding="8sp"-->
+        <!--app:markerColor="@color/colorPrimary"-->
+        <!--app:markerTextAppearance="@style/MarkerCustomTextStyle"-->
+        <!--app:markerTextColor="#ffffff"-->
+        <!--app:smoothTracking="true" />-->
+
+    <TextView
+        android:id="@+id/get_started"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/seekbar_sadness"
+        android:layout_centerHorizontal="true"
+        android:text="now let's proceed with the map!"
+        android:textSize="24sp" />
 </RelativeLayout>

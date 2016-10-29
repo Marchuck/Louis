@@ -30,23 +30,12 @@ public class Common {
     public static final String TAG = Common.class.getSimpleName();
 
     public static rx.Observable<Bitmap> drawableToBitmap(final Drawable drawable) {
-        return Observable.fromCallable(new Callable<Bitmap>() {
-            @Override
-            public Bitmap call() throws Exception {
-                return drawableToBitmapSynchronus(drawable);
-            }
-        });
+        return Observable.fromCallable(() -> drawableToBitmapSynchronus(drawable));
     }
 
     public static rx.Observable<Bitmap> scaleBitmap(final Bitmap inputBitmap) {
-        return Observable.fromCallable(new Callable<Bitmap>() {
-            @Override
-            public Bitmap call() throws Exception {
-                return getResizedBitmap(inputBitmap);
-            }
-        });
+        return Observable.fromCallable(() -> getResizedBitmap(inputBitmap));
     }
-
 
     public static rx.Observable<Bitmap> rotatedByAllAngles(final Bitmap bmp) {
         return Observable.create(new Observable.OnSubscribe<Bitmap>() {
@@ -96,19 +85,16 @@ public class Common {
 
     public static rx.Observable<Drawable> uriToDrawable(final Context ctx, final Uri uri) {
         Log.d(TAG, "uriToDrawable: ");
-        return Observable.fromCallable(new Callable<Drawable>() {
-            @Override
-            public Drawable call() throws Exception {
+        return Observable.fromCallable(() -> {
 
-                Drawable yourDrawable;
-                try {
-                    InputStream inputStream = ctx.getContentResolver().openInputStream(uri);
-                    yourDrawable = Drawable.createFromStream(inputStream, uri.toString());
-                    return yourDrawable;
-                } catch (FileNotFoundException e) {
-                    yourDrawable = ctx.getResources().getDrawable(R.drawable.face);
-                    return yourDrawable;
-                }
+            Drawable yourDrawable;
+            try {
+                InputStream inputStream = ctx.getContentResolver().openInputStream(uri);
+                yourDrawable = Drawable.createFromStream(inputStream, uri.toString());
+                return yourDrawable;
+            } catch (FileNotFoundException e) {
+                yourDrawable = ctx.getResources().getDrawable(R.drawable.face);
+                return yourDrawable;
             }
         });
     }
