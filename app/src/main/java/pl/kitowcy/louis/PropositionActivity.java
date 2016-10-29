@@ -21,6 +21,7 @@ import pl.kitowcy.louis.proposition.PropItem;
 import pl.kitowcy.louis.proposition.PropositionItemsProvider;
 import pl.kitowcy.louis.proposition.SwipeDeckAdapter;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+import xyz.hanks.library.SmallBang;
 
 public class PropositionActivity extends AppCompatActivity {
 
@@ -62,8 +63,13 @@ public class PropositionActivity extends AppCompatActivity {
 //        cardStack.setRightImage(R.id.right_image);
 
         //example of buttons triggering events on the deck
+        SmallBang smallBang = SmallBang.attach2Window(this);
+
         btn.setOnClickListener(v -> cardStack.swipeTopCardLeft(180));
-        btn2.setOnClickListener(v -> cardStack.swipeTopCardRight(180));
+        btn2.setOnClickListener(v -> {
+            smallBang.bang(v);
+            cardStack.swipeTopCardRight(180);
+        });
 
 //        btn3.setOnClickListener(v -> adapter.notifyDataSetChanged());
     }

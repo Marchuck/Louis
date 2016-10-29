@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@android:color/holo_blue_dark">
+                android:background="@android:color/holo_orange_dark">
 
     <TextView
         android:id="@+id/text1"
@@ -11,6 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_margin="24dp"
+        android:gravity="center"
+        android:paddingTop="24dp"
         android:text="@string/name_fragment_hello"/>
 
     <TextView
@@ -21,11 +23,17 @@
         android:layout_below="@id/text1"
         android:layout_centerHorizontal="true"
         android:layout_margin="24dp"
+        android:gravity="center"
         android:text="@string/name_fragment_name_input"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/text2"/>
+        android:layout_alignEnd="@id/text2"
+        android:layout_alignStart="@id/text2"
+        android:layout_below="@id/text2"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"/>
 
 </RelativeLayout>
