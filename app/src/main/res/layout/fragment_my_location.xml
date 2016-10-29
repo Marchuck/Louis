@@ -6,6 +6,7 @@
     android:layout_marginLeft="16sp"
     android:layout_marginRight="16sp"
     android:layout_marginTop="16sp"
+    android:background="@color/location"
     tools:context="pl.kitowcy.louis.mapsy.MyLocationFragment">
 
 
@@ -17,12 +18,12 @@
         android:visibility="gone" />
 
     <TextView
-        android:textSize="24sp"
         android:id="@+id/title_my_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="choose place" />
+        android:text="choose distance"
+        android:textSize="24sp" />
 
     <RelativeLayout
         android:id="@+id/map_layout"
@@ -36,27 +37,33 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_below="@+id/map_layout">
-
+        <ImageView
+            android:id="@+id/pasek_elo"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:layout_below="@+id/map_layout"
+            android:src="@drawable/icon_distance_slide" />
         <ImageView
             android:id="@+id/immediate"
             android:layout_width="50sp"
             android:layout_height="50sp"
-            android:background="@color/colorPrimary" />
+            android:src="@drawable/icon_distance_1" />
 
         <ImageView
             android:id="@+id/near"
-
             android:layout_width="50sp"
             android:layout_height="50sp"
             android:layout_centerHorizontal="true"
-            android:background="@color/colorPrimary" />
+            android:src="@drawable/icon_distance_2" />
 
         <ImageView
             android:id="@+id/far"
             android:layout_width="50sp"
             android:layout_height="50sp"
             android:layout_alignParentRight="true"
-            android:background="@color/colorPrimary" />
+            android:src="@drawable/icon_distance_3" />
+
+
 
     </RelativeLayout>
 
