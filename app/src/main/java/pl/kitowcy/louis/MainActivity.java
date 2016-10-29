@@ -11,6 +11,7 @@ import android.widget.Toast;
 import android.util.Log;
 
 import pl.kitowcy.louis.facedetection.GetMoodFragment;
+import pl.kitowcy.louis.facedetection.GetMoodFragmentBase;
 
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
@@ -23,7 +24,7 @@ public class MainActivity extends AppIntro {
         super.onCreate(savedInstanceState);
 
         addSlide(NameFragment.newInstance());
-        addSlide(GetMoodFragment.newInstance());
+        addSlide(GetMoodFragmentBase.newInstance());
         addSlide(
                 AppIntroFragment.newInstance("Hello, I'm Louis", "We need to know each other C:",
                         android.R.drawable.ic_media_play, ContextCompat.getColor(this, android.R.color.holo_orange_dark)));

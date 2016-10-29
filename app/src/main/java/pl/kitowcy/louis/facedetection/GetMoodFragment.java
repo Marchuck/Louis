@@ -53,10 +53,18 @@ public class GetMoodFragment extends Fragment {
                                     public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions,
                                                                                    PermissionToken token) {
                                         Log.d(TAG, "Grant permission to use this feature");
+                                        enterStuffManually();
                                     }
                                 },
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.CAMERA);
+    }
+
+    void enterStuffManually() {
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.rootLayoutBase, ManuallyEnteredMoodFragment.newInstance())
+                .commitAllowingStateLoss();
     }
 
     @Override

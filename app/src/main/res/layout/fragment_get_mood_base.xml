@@ -1,16 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLayoutBase"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context="pl.kitowcy.louis.facedetection.GetMoodFragment">
 
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fragment_get_mood_camera_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_margin="@dimen/activity_horizontal_margin" />
 
 </RelativeLayout>
