@@ -1,5 +1,6 @@
 package pl.kitowcy.louis;
 
+import android.Manifest;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.content.Intent;
@@ -15,6 +16,13 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+
+import java.util.List;
 
 public class MainActivity extends AppIntro {
 
@@ -36,6 +44,24 @@ public class MainActivity extends AppIntro {
         addSlide(
                 AppIntroFragment.newInstance("tutaj", "jest ostatni moj slajdzik opis",
                         android.R.drawable.arrow_up_float, ContextCompat.getColor(this, android.R.color.holo_red_dark)));
+        Dexter.checkPermissions(new MultiplePermissionsListener() {
+                                    @Override
+                                    public void onPermissionsChecked(MultiplePermissionsReport report) {
+                                        startService(new Intent(getApplication(), LocationService.class));
+                                    }
+
+                                    @Override
+                                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                                        finish();
+                                    }
+                                },
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_WIFI_STATE
+
+
+        );
     }
 
     @Override

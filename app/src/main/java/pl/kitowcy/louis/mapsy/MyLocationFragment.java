@@ -238,7 +238,8 @@ public class MyLocationFragment extends Fragment implements MultiplePermissionsL
         Log.d(TAG, "initOnce: ");
         if (initonce) return;
         initonce = true;
-        Dexter.checkPermissions(this, Manifest.permission.ACCESS_FINE_LOCATION,
+        Dexter.checkPermissions(this,
+                Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_COARSE_LOCATION,
                 Manifest.permission.ACCESS_WIFI_STATE);
     }
