@@ -19,7 +19,7 @@
     <ImageView
         android:id="@+id/mirror"
         android:layout_width="wrap_content"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         android:layout_below="@+id/ffff"
         android:layout_centerHorizontal="true"
         android:src="@drawable/image_mirror" />
