@@ -28,25 +28,22 @@
             swipedeck:max_visible="2"
             swipedeck:swipe_enabled="true"/>
 
-        <Button
+        <android.support.design.widget.FloatingActionButton
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
+            android:layout_gravity="bottom|left"
+            android:elevation="8dp"
+            android:scaleType="center"
             android:text="swipe left"/>
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            android:text="add card"/>
-
-        <Button
+        <android.support.design.widget.FloatingActionButton
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
+            android:elevation="8dp"
+            android:scaleType="center"
             android:text="swipe right"/>
 
     </com.daprlabs.aaron.swipedeck.layouts.SwipeFrameLayout>

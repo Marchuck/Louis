@@ -1,6 +1,7 @@
 package pl.kitowcy.louis;
 
 import android.content.Context;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,6 +25,8 @@ public class PropositionActivity extends AppCompatActivity {
 
     @BindView(R.id.swipeLayout) SwipeFrameLayout swipeFrameLayout;
     @BindView(R.id.swipe_deck) SwipeDeck cardStack;
+    @BindView(R.id.button) FloatingActionButton btn;
+    @BindView(R.id.button2) FloatingActionButton btn2;
 
     List<PropItem> propItemList;
     SwipeDeckAdapter adapter;
@@ -58,12 +61,10 @@ public class PropositionActivity extends AppCompatActivity {
         cardStack.setRightImage(R.id.right_image);
 
         //example of buttons triggering events on the deck
-        Button btn = (Button) findViewById(R.id.button);
         btn.setOnClickListener(v -> cardStack.swipeTopCardLeft(180));
-        Button btn2 = (Button) findViewById(R.id.button2);
         btn2.setOnClickListener(v -> cardStack.swipeTopCardRight(180));
-        Button btn3 = (Button) findViewById(R.id.button3);
-        btn3.setOnClickListener(v -> adapter.notifyDataSetChanged());
+
+//        btn3.setOnClickListener(v -> adapter.notifyDataSetChanged());
     }
 
     @Override
