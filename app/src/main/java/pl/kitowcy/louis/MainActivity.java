@@ -1,6 +1,7 @@
 package pl.kitowcy.louis;
 
 import android.Manifest;
+import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.util.Log;
 
 import pl.kitowcy.louis.facedetection.GetMoodFragment;
 import pl.kitowcy.louis.facedetection.GetMoodFragmentBase;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
@@ -31,6 +33,20 @@ public class MainActivity extends AppIntro {
         addSlide(
                 AppIntroFragment.newInstance("tutaj", "jest ostatni moj slajdzik opis",
                         android.R.drawable.arrow_up_float, ContextCompat.getColor(this, android.R.color.holo_red_dark)));
+    }
+
+    @Override
+    public void onDonePressed(Fragment currentFragment) {
+        super.onDonePressed(currentFragment);
+        Intent intent = new Intent(this, PropositionActivity.class);
+        startActivity(intent);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        finish();
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
     @Override
