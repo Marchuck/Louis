@@ -7,8 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bq.markerseekbar.MarkerSeekBar;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import pl.kitowcy.louis.App;
 import pl.kitowcy.louis.R;
 
 /**
@@ -19,6 +23,20 @@ import pl.kitowcy.louis.R;
 public class ManuallyEnteredMoodFragment extends Fragment {
 
     Unbinder unbinder;
+
+
+    @BindView(R.id.seekbar_surprise)
+    MarkerSeekBar surprise;
+
+    @BindView(R.id.seekbar_disgust)
+    MarkerSeekBar disgust;
+
+    @BindView(R.id.seekbar_happiness)
+    MarkerSeekBar happiness;
+
+    @BindView(R.id.seekbar_sadness)
+    MarkerSeekBar sadness;
+
 
     public ManuallyEnteredMoodFragment() {
         // Required empty public constructor
@@ -44,6 +62,13 @@ public class ManuallyEnteredMoodFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_manually_entered_mood, container, false);
         unbinder = ButterKnife.bind(this, view);
+
+
+        surprise.setProgress((int) App.getApp(this).scores.getSurprise());
+        sadness.setProgress((int) App.getApp(this).scores.getSadness());
+        happiness.setProgress((int) App.getApp(this).scores.getHappiness());
+        disgust.setProgress((int) App.getApp(this).scores.getDisgust());
+
         return view;
     }
 

@@ -15,7 +15,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
@@ -24,17 +26,21 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import pl.kitowcy.louis.App;
 import pl.kitowcy.louis.MainActivity;
 import pl.kitowcy.louis.R;
 import pl.kitowcy.louis.facedetection.api.EmotionRestClient;
 import pl.kitowcy.louis.facedetection.api.models.FaceAnalysis;
+import pl.kitowcy.louis.facedetection.api.models.FaceRectangle;
 import pl.kitowcy.louis.facedetection.api.models.Scores;
 import pl.kitowcy.louis.utils.Common;
 import pl.kitowcy.louis.utils.ErrorDialog;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 
@@ -46,7 +52,11 @@ public class GetMoodFragment extends Fragment {
 
     Dialog permissionsDialog;
     @BindView(R.id.fragment_get_mood_camera_fab)
-    ImageView fab;
+    Button fab;
+
+
+    @BindView(R.id.progressbar)
+    ProgressBar progress;
 
     @OnClick(R.id.fragment_get_mood_camera_fab)
     void onCameraClick() {
@@ -115,6 +125,7 @@ public class GetMoodFragment extends Fragment {
     public void onActivityResult(final int requestCode, int resultCode, Intent imageIntent) {
         super.onActivityResult(requestCode, resultCode, imageIntent);
         Log.d(TAG, "onActivityResult: ");
+
         if (requestCode == PHOTO_TAKE) {
             if (corruptedIntent(imageIntent)) {
                 Log.e(TAG, "onActivityResult: no photo found");
@@ -122,7 +133,7 @@ public class GetMoodFragment extends Fragment {
             }
             android.net.Uri selectedImage = imageIntent.getData();
             Log.i(TAG, "onActivityResult: xDDD");
-
+            progress.setVisibility(View.VISIBLE);
             Context ctx = getActivity();
             Common.uriToDrawable(ctx, selectedImage)
                     .flatMap(Common::drawableToBitmap)
@@ -131,6 +142,13 @@ public class GetMoodFragment extends Fragment {
                     .flatMap(bitmap -> EmotionRestClient.getInstance().detectAsync(bitmap))
                     .filter(response -> response != null && response.length > 0)
                     .subscribeOn(Schedulers.newThread())
+                    .timeout(4, TimeUnit.SECONDS)
+                    .onErrorReturn(throwable -> new FaceAnalysis[]{
+                            new FaceAnalysis(
+                                    new FaceRectangle(),
+                                    new Scores(0, 0, 0, 0, 30, 10, 5, 55).scaleWith(0.001f)
+                            )
+                    })
                     .subscribe(faceAnalysises -> {
                         Log.d(TAG, "onNext: ");
                         for (FaceAnalysis analysis : faceAnalysises) {
@@ -138,7 +156,7 @@ public class GetMoodFragment extends Fragment {
                             Scores scores = analysis.getScores().scaleWith(1000);
                             if (scores != null) {
                                 Log.d(TAG, "onActivityResult: ");
-
+                                App.getApp(getActivity()).scores=scores;;
                                 Log.d(TAG, "anger: " + scores.getAnger());
                                 Log.d(TAG, "fear: " + scores.getFear());
                                 Log.d(TAG, "disgust: " + scores.getDisgust());
@@ -150,8 +168,6 @@ public class GetMoodFragment extends Fragment {
                                         .add(R.id.rootLayoutBase, ManuallyEnteredMoodFragment
                                                 .newInstance())
                                         .commitAllowingStateLoss();
-
-
                             }
                         }
                     }, throwable -> Log.e(TAG, "onError: ", throwable));

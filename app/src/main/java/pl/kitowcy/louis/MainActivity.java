@@ -84,11 +84,17 @@ public class MainActivity extends AppIntro {
         super.onActivityResult(requestCode, resultCode, data);
         Log.d(TAG, "onActivityResult: ");
 
-        Fragment fragment = getSupportFragmentManager().findFragmentByTag(GetMoodFragment.TAG);
-        if (fragment instanceof GetMoodFragment) {
-            GetMoodFragment fragment1 = ((GetMoodFragment) fragment);
-            fragment1.onActivityResult(requestCode, resultCode, data);
-        }
+        int position = App.currentPage;
+        if (getSupportFragmentManager() != null)
+            if (Is.nonEmpty(getSupportFragmentManager().getFragments()))
+                for (Fragment fr : getSupportFragmentManager().getFragments()) {
+                    if (position == 1 && fr instanceof GetMoodFragment) {
+                        GetMoodFragment frag = ((GetMoodFragment) fr);
+
+                        frag.onActivityResult(requestCode, resultCode, data);
+
+                    }
+                }
     }
 
     public void onPageSelected(boolean is) {
