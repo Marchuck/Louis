@@ -227,17 +227,18 @@ public class GetMoodFragment extends Fragment {
         louis.setScaleX(0);
         louis.setScaleY(0);
 
-        louis.animate()
-                .setStartDelay(300)
-                .scaleX(1)
-                .scaleY(1)
-                .setDuration(300)
-
-                .withEndAction(this::loop)
-                .start();
+//        louis.animate()
+//                .setStartDelay(300)
+//                .scaleX(1)
+//                .scaleY(1)
+//                .setDuration(300)
+//
+//                .withEndAction(this::loop)
+//                .start();
     }
 
     public void loop() {
+
         louis.animate()
                 .translationX(dx + DX)
                 .translationY(dy)
