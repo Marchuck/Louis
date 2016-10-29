@@ -22,7 +22,8 @@
         <com.daprlabs.aaron.swipedeck.SwipeDeck
             android:id="@+id/swipe_deck"
             android:layout_width="match_parent"
-            android:layout_height="480dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="70dp"
             android:padding="12dp"
             swipedeck:card_spacing="15dp"
             swipedeck:max_visible="2"
