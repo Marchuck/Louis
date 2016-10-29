@@ -15,6 +15,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import pl.kitowcy.louis.proposition.PropItem;
+import pl.kitowcy.louis.proposition.PropositionItemsProvider;
 import pl.kitowcy.louis.proposition.SwipeDeckAdapter;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -23,7 +25,7 @@ public class PropositionActivity extends AppCompatActivity {
     @BindView(R.id.swipeLayout) SwipeFrameLayout swipeFrameLayout;
     @BindView(R.id.swipe_deck) SwipeDeck cardStack;
 
-    List<String> testData;
+    List<PropItem> propItemList;
     SwipeDeckAdapter adapter;
 
     @Override
@@ -32,14 +34,9 @@ public class PropositionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_proposition);
         ButterKnife.bind(this);
 
-        testData = new ArrayList<>();
-        testData.add("0");
-        testData.add("1");
-        testData.add("2");
-        testData.add("3");
-        testData.add("4");
+        propItemList = PropositionItemsProvider.getItems();
 
-        adapter = new SwipeDeckAdapter(testData, this, this);
+        adapter = new SwipeDeckAdapter(propItemList, this);
         if (cardStack != null) {
             cardStack.setAdapter(adapter);
         }
@@ -62,28 +59,11 @@ public class PropositionActivity extends AppCompatActivity {
 
         //example of buttons triggering events on the deck
         Button btn = (Button) findViewById(R.id.button);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cardStack.swipeTopCardLeft(180);
-            }
-        });
+        btn.setOnClickListener(v -> cardStack.swipeTopCardLeft(180));
         Button btn2 = (Button) findViewById(R.id.button2);
-        btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cardStack.swipeTopCardRight(180);
-            }
-        });
-
+        btn2.setOnClickListener(v -> cardStack.swipeTopCardRight(180));
         Button btn3 = (Button) findViewById(R.id.button3);
-        btn3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                testData.add("a sample string.");
-                adapter.notifyDataSetChanged();
-            }
-        });
+        btn3.setOnClickListener(v -> adapter.notifyDataSetChanged());
     }
 
     @Override
