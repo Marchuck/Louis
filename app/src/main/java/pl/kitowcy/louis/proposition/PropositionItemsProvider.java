@@ -22,13 +22,13 @@ public class PropositionItemsProvider {
     }
 
     private static PropItem getBeksinski() {
-        return new PropItem("Galeria Zdzisława Beksińskiego",
+        return new PropItem("Zdzisław Beksiński Gallery",
                 "Obrazy, rysunki i fotografie - łącznie 250 prac z prywatnej kolekcji. " +
                         "Beksiński należy do wąskiego grona polskich artystów, których twórczość jest " +
                         "tak dobrze rozpoznawalna zarówno w Polsce, jak i w Europie. Rodzące wiele emocji i kontrowersji " +
                         "dzieła Artysty nikogo nie pozostawiają obojętnym.",
                 "10.00 - 22.00",
-                "Nowohuckie Centrum Kultury\nal. Jana Pawła II 232",
+                "NCK\nal. Jana Pawła II 232",
                 R.drawable.beksinski);
     }
 

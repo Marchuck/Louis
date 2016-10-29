@@ -57,8 +57,8 @@ public class PropositionActivity extends AppCompatActivity {
 
         });
 
-        cardStack.setLeftImage(R.id.left_image);
-        cardStack.setRightImage(R.id.right_image);
+//        cardStack.setLeftImage(R.id.left_image);
+//        cardStack.setRightImage(R.id.right_image);
 
         //example of buttons triggering events on the deck
         btn.setOnClickListener(v -> cardStack.swipeTopCardLeft(180));

@@ -56,17 +56,21 @@ public class SwipeDeckAdapter extends BaseAdapter {
         }
 
         ImageView imageView = (ImageView) v.findViewById(R.id.offer_image);
+        TextView title = (TextView) v.findViewById(R.id.title);
+        TextView description = (TextView) v.findViewById(R.id.description);
+        TextView adddress = (TextView) v.findViewById(R.id.address);
+        TextView hour = (TextView) v.findViewById(R.id.hour);
+
         Picasso.with(activity.getBaseContext()).load(data.get(position).getImage()).fit().centerCrop().into(imageView);
-        TextView textView = (TextView) v.findViewById(R.id.sample_text);
-        textView.setText(data.get(position).getTitle());
+        title.setText(data.get(position).getTitle());
+        description.setText(data.get(position).getText());
+        adddress.setText(data.get(position).getLocation());
+        hour.setText(data.get(position).getHours());
 //        String item = (String) getItem(position);
 
-        v.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i("Layer type: ", Integer.toString(v.getLayerType()));
-                Log.i("Hardware Accel type:", Integer.toString(View.LAYER_TYPE_HARDWARE));
-            }
+        v.setOnClickListener(v1 -> {
+            Log.i("Layer type: ", Integer.toString(v1.getLayerType()));
+            Log.i("Hardware Accel type:", Integer.toString(View.LAYER_TYPE_HARDWARE));
         });
         return v;
     }
