@@ -49,11 +49,9 @@ public class GetMoodFragment extends Fragment {
     public static final String TAG = GetMoodFragment.class.getSimpleName();
     public static final int PHOTO_TAKE = 2137;
 
-
     Dialog permissionsDialog;
     @BindView(R.id.fragment_get_mood_camera_fab)
     Button fab;
-
 
     @BindView(R.id.progressbar)
     ProgressBar progress;

@@ -36,14 +36,14 @@ public class NameFragment extends Fragment {
                 .translationX(dx + DX)
                 .translationY(dy)
                 .translationYBy(dy - DY)
-                .setDuration(300)
+                .setDuration(TIME)
                 .withEndAction(() -> {
                     Log.d(TAG, "run: " + louis.getX());
                     louis.animate()
                             .translationX(dx - DX)
                             .translationY(dy)
                             .translationYBy(dy + DY)
-                            .setDuration(300)
+                            .setDuration(TIME)
                             .withEndAction(() -> {
                                 Log.d(TAG, "run: " + louis.getX());
                                 if (canLoop) loop();
@@ -52,7 +52,7 @@ public class NameFragment extends Fragment {
                 }).start();
     }
 
-    final int TIME = 260;
+    final int TIME = 800;
 
 
     @BindView(R.id.louis_pivot)

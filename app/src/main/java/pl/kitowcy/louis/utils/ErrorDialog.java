@@ -4,10 +4,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.view.Window;
 
 /**
  * Project "GoingAir"
- * <p/>
+ * <p>
  * Created by Lukasz Marczak
  * on 07.10.16.
  */
@@ -57,9 +58,11 @@ public class ErrorDialog extends AlertDialog {
 
     private ErrorDialog init(String errorMessage) {
         // setContentView(R.layout.error_dialog);
-        setTitle("An error occurred");
+        getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+
+        ///   setTitle("An error occurred");
         setMessage(errorMessage);
-        setCancelable(false);
+        setCancelable(true);
 
         return this;
     }

@@ -20,6 +20,7 @@ import butterknife.ButterKnife;
 import pl.kitowcy.louis.proposition.PropItem;
 import pl.kitowcy.louis.proposition.PropositionItemsProvider;
 import pl.kitowcy.louis.proposition.SwipeDeckAdapter;
+import pl.kitowcy.louis.utils.ErrorDialog;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 import xyz.hanks.library.SmallBang;
 
@@ -68,7 +69,11 @@ public class PropositionActivity extends AppCompatActivity {
         btn.setOnClickListener(v -> cardStack.swipeTopCardLeft(180));
         btn2.setOnClickListener(v -> {
             smallBang.bang(v);
-            cardStack.swipeTopCardRight(180);
+           // cardStack.swipeTopCardRight(180);
+
+            new ErrorDialog(PropositionActivity.this)
+                    .withMessage("Have fun!")
+                    .show();
         });
 
 //        btn3.setOnClickListener(v -> adapter.notifyDataSetChanged());
