@@ -22,13 +22,11 @@ import pl.kitowcy.louis.R;
 
 public class SwipeDeckAdapter extends BaseAdapter {
 
-    private List<String> data;
-    private Context context;
+    private List<PropItem> data;
     private Activity activity;
 
-    public SwipeDeckAdapter(List<String> data, Context context, Activity activity) {
+    public SwipeDeckAdapter(List<PropItem> data, Activity activity) {
         this.data = data;
-        this.context = context;
         this.activity = activity;
     }
 
@@ -58,10 +56,10 @@ public class SwipeDeckAdapter extends BaseAdapter {
         }
 
         ImageView imageView = (ImageView) v.findViewById(R.id.offer_image);
-        Picasso.with(context).load(R.drawable.beksinski).fit().centerCrop().into(imageView);
+        Picasso.with(activity.getBaseContext()).load(data.get(position).getImage()).fit().centerCrop().into(imageView);
         TextView textView = (TextView) v.findViewById(R.id.sample_text);
-        String item = (String) getItem(position);
-        textView.setText(item);
+        textView.setText(data.get(position).getTitle());
+//        String item = (String) getItem(position);
 
         v.setOnClickListener(new View.OnClickListener() {
             @Override
