@@ -49,7 +49,7 @@ public class PropositionItemsProvider {
 
     private static PropItem getMovie() {
         return new PropItem("Cinema City - Doctor Strange",
-                "Jazz concert features France’s duo of double bassist Joelle Leandre and trumpeter Jean-Luc Cappozzo.",
+                " A former neurosurgeon embarks on a journey of healing only to be drawn into the world of the mystic arts.",
                 "21.15",
                 "Cinema City Bonarka",
                 R.drawable.doctorstrange);
