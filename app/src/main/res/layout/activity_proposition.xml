@@ -35,7 +35,7 @@
             android:layout_gravity="bottom|start"
             android:layout_margin="8dp"
             android:elevation="8dp"
-            android:src="@drawable/fab_no"/>
+            android:src="@drawable/no_image_button"/>
 
         <ImageView
             android:id="@+id/button2"
@@ -44,7 +44,7 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="8dp"
             android:elevation="8dp"
-            android:src="@drawable/fab_yes"/>
+            android:src="@drawable/yes_image_button"/>
 
     </com.daprlabs.aaron.swipedeck.layouts.SwipeFrameLayout>
 
