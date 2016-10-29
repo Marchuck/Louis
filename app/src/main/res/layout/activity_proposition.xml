@@ -28,23 +28,23 @@
             swipedeck:max_visible="2"
             swipedeck:swipe_enabled="true"/>
 
-        <android.support.design.widget.FloatingActionButton
+        <ImageView
             android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|left"
+            android:layout_width="@dimen/fab_size"
+            android:layout_height="@dimen/fab_size"
+            android:layout_gravity="bottom|start"
+            android:layout_margin="8dp"
             android:elevation="8dp"
-            android:scaleType="center"
-            android:text="swipe left"/>
+            android:src="@drawable/fab_no"/>
 
-        <android.support.design.widget.FloatingActionButton
+        <ImageView
             android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
+            android:layout_width="@dimen/fab_size"
+            android:layout_height="@dimen/fab_size"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="8dp"
             android:elevation="8dp"
-            android:scaleType="center"
-            android:text="swipe right"/>
+            android:src="@drawable/fab_yes"/>
 
     </com.daprlabs.aaron.swipedeck.layouts.SwipeFrameLayout>
 

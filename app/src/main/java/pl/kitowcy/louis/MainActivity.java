@@ -44,6 +44,9 @@ public class MainActivity extends AppIntro {
         addSlide(
                 AppIntroFragment.newInstance("tutaj", "jest ostatni moj slajdzik opis",
                         android.R.drawable.arrow_up_float, ContextCompat.getColor(this, android.R.color.holo_red_dark)));
+
+        showSkipButton(false);
+
         Dexter.checkPermissions(new MultiplePermissionsListener() {
                                     @Override
                                     public void onPermissionsChecked(MultiplePermissionsReport report) {

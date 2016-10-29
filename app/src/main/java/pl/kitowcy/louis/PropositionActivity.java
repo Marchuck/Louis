@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.daprlabs.aaron.swipedeck.SwipeDeck;
 import com.daprlabs.aaron.swipedeck.layouts.SwipeFrameLayout;
@@ -25,8 +26,8 @@ public class PropositionActivity extends AppCompatActivity {
 
     @BindView(R.id.swipeLayout) SwipeFrameLayout swipeFrameLayout;
     @BindView(R.id.swipe_deck) SwipeDeck cardStack;
-    @BindView(R.id.button) FloatingActionButton btn;
-    @BindView(R.id.button2) FloatingActionButton btn2;
+    @BindView(R.id.button) ImageView btn;
+    @BindView(R.id.button2) ImageView btn2;
 
     List<PropItem> propItemList;
     SwipeDeckAdapter adapter;
