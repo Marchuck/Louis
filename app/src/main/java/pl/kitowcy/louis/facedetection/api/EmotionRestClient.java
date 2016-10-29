@@ -3,6 +3,7 @@ package pl.kitowcy.louis.facedetection.api;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.util.Log;
 
 import com.google.gson.JsonObject;
 
@@ -17,6 +18,7 @@ import pl.kitowcy.louis.R;
 import pl.kitowcy.louis.facedetection.api.models.FaceAnalysis;
 import pl.kitowcy.louis.facedetection.api.util.FileUtils;
 import pl.kitowcy.louis.facedetection.api.util.NetworkUtils;
+import pl.kitowcy.louis.utils.Is;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -30,6 +32,7 @@ import rx.Subscriber;
  * Created by David Pacioianu on 1/12/16.
  */
 public class EmotionRestClient {
+    public static final String TAG = EmotionRestClient.class.getSimpleName();
 
     private static final String API_BASE_URL = "https://api.projectoxford.ai/emotion/v1.0/";
     private ApiService apiService = null;
@@ -86,8 +89,11 @@ public class EmotionRestClient {
                 } else {
                     //request not successful (like 400,401,403 etc)
                     try {
-                        callback.onError(response.errorBody().string());
+                        String s = response.errorBody().string();
+                        Log.e(TAG, "onResponse: " + s);
+                        callback.onError(s);
                     } catch (IOException e) {
+                        Log.e(TAG, "onResponse: ", e);
                         callback.onError(response.message());
                     }
                 }
@@ -111,18 +117,21 @@ public class EmotionRestClient {
 
 
     public rx.Observable<FaceAnalysis[]> detectAsync(final Bitmap bmp) {
+        Log.d(TAG, "detectAsync: ");
         return Observable.create(new Observable.OnSubscribe<FaceAnalysis[]>() {
             @Override
             public void call(final Subscriber<? super FaceAnalysis[]> subscriber) {
                 detect(bmp, new ResponseCallback() {
                     @Override
                     public void onError(String errorMessage) {
+                        Log.e(TAG, "onError: " + errorMessage);
                         subscriber.onError(new Throwable(errorMessage));
                     }
 
                     @Override
                     public void onSuccess(FaceAnalysis[] response) {
-                        subscriber.onNext(response);
+                        Log.d(TAG, "onSuccess: " + (Is.nonEmpty(response)));
+                        if (Is.nonEmpty(response)) subscriber.onNext(response);
                     }
                 });
             }

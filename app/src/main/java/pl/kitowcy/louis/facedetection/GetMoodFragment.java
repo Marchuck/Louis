@@ -114,7 +114,7 @@ public class GetMoodFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getParentActivity().onPageSelected( );
+        getParentActivity().onPageSelected();
     }
 
     void enterStuffManually() {
@@ -145,7 +145,8 @@ public class GetMoodFragment extends Fragment {
                     .flatMap(bitmap -> EmotionRestClient.getInstance().detectAsync(bitmap))
                     .filter(response -> response != null && response.length > 0)
                     .subscribeOn(Schedulers.newThread())
-                    .timeout(4, TimeUnit.SECONDS)
+                    .timeout(8, TimeUnit.SECONDS)
+                    .take(1)
                     .onErrorReturn(throwable -> new FaceAnalysis[]{
                             new FaceAnalysis(
                                     new FaceRectangle(),
