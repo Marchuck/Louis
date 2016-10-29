@@ -39,12 +39,13 @@
         android:textSize="24sp" />
 
     <ImageView
+        android:padding="30sp"
         android:id="@+id/louis_pivot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/edit_name"
         android:layout_centerHorizontal="true"
         android:layout_margin="8sp"
-        android:src="@drawable/fab_no" />
+        android:src="@drawable/cloud_main" />
 
 </RelativeLayout>
