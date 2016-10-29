@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.BounceInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -55,6 +57,9 @@ public class GetMoodFragment extends Fragment {
 
     @BindView(R.id.progressbar)
     ProgressBar progress;
+
+    @BindView(R.id.louis_pivot_small)
+    ImageView louis;
 
     @OnClick(R.id.fragment_get_mood_camera_fab)
     void onCameraClick() {
@@ -109,7 +114,7 @@ public class GetMoodFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getParentActivity().onPageSelected(true);
+        getParentActivity().onPageSelected( );
     }
 
     void enterStuffManually() {
@@ -154,7 +159,8 @@ public class GetMoodFragment extends Fragment {
                             Scores scores = analysis.getScores().scaleWith(1000);
                             if (scores != null) {
                                 Log.d(TAG, "onActivityResult: ");
-                                App.getApp(getActivity()).scores=scores;;
+                                App.getApp(getActivity()).scores = scores;
+                                ;
                                 Log.d(TAG, "anger: " + scores.getAnger());
                                 Log.d(TAG, "fear: " + scores.getFear());
                                 Log.d(TAG, "disgust: " + scores.getDisgust());
@@ -205,8 +211,55 @@ public class GetMoodFragment extends Fragment {
         ButterKnife.bind(this, view);
         //  fab = (FloatingActionButton)v.findViewById(R.id.fragment_get_mood_camera_fab);
         fab.setOnClickListener(v1 -> onCameraClick());
+
+
         return view;
     }
+
+    float dx, dy;
+    float DY = 10, DX = 20;
+
+    boolean canLoop = true;
+
+    public void setupLouis() {
+        Log.d(TAG, "setupLouis: ");
+        louis.setVisibility(View.VISIBLE);
+        louis.setScaleX(0);
+        louis.setScaleY(0);
+
+        louis.animate()
+                .setStartDelay(300)
+                .scaleX(1)
+                .scaleY(1)
+                .setDuration(300)
+
+                .withEndAction(this::loop)
+                .start();
+    }
+
+    public void loop() {
+        louis.animate()
+                .translationX(dx + DX)
+                .translationY(dy)
+                .translationYBy(dy - DY)
+                .setDuration(TIME)
+                .withEndAction(() -> {
+                    Log.d(TAG, "run: " + louis.getX());
+                    louis.animate()
+                            .translationX(dx - DX)
+                            .translationY(dy)
+                            .translationYBy(dy + DY)
+                            .setDuration(TIME)
+                            .withEndAction(() -> {
+                                Log.d(TAG, "run: " + louis.getX());
+                                if (canLoop) loop();
+
+                            }).start();
+                }).start();
+    }
+
+    final int TIME = 700;
+
 
     public MainActivity getParentActivity() {
         return ((MainActivity) getActivity());

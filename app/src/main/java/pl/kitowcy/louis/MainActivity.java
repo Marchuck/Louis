@@ -90,29 +90,31 @@ public class MainActivity extends AppIntro {
                 }
     }
 
-    public void onPageSelected(boolean is) {
-        if (is) {
-            int position = App.currentPage;
-            Log.d(TAG, "onPageSelected: " + position);
-            if (getSupportFragmentManager() != null)
-                if (Is.nonEmpty(getSupportFragmentManager().getFragments()))
-                    for (Fragment fr : getSupportFragmentManager().getFragments()) {
-                        if (position == 1 && fr instanceof GetMoodFragment) {
-                            GetMoodFragment frag = ((GetMoodFragment) fr);
+    public void onPageSelected() {
 
-                        } else if (position == 2 && fr instanceof MyLocationFragment) {
-                            MyLocationFragment frag = ((MyLocationFragment) fr);
-                            frag.initOnce();
-                        }
+        int position = App.currentPage;
+        Log.d(TAG, "onPageSelected: " + position);
+        if (getSupportFragmentManager() != null)
+            if (Is.nonEmpty(getSupportFragmentManager().getFragments()))
+                for (Fragment fr : getSupportFragmentManager().getFragments()) {
+                    if (position == 1 && fr instanceof GetMoodFragment) {
+                        GetMoodFragment frag = ((GetMoodFragment) fr);
+                          frag.setupLouis();
+
+
+                    } else if (position == 2 && fr instanceof MyLocationFragment) {
+                        MyLocationFragment frag = ((MyLocationFragment) fr);
+                        frag.initOnce();
                     }
-        }
+                }
     }
+
 
     @Override
     public void onPageSelected(int position) {
         super.onPageSelected(position);
         App.currentPage = position;
-        onPageSelected(true);
+        onPageSelected();
 
     }
 }

@@ -1,9 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/holo_green_light"
-                tools:context="pl.kitowcy.louis.facedetection.GetMoodFragment">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_green_light"
+    tools:context="pl.kitowcy.louis.facedetection.GetMoodFragment">
 
     <TextView
         android:id="@+id/ffff"
@@ -14,7 +14,7 @@
         android:layout_margin="24dp"
         android:gravity="center"
         android:paddingTop="24dp"
-        android:text="Let me look at you I'll check your mood :-) "/>
+        android:text="Let me look at you I'll check your mood :-) " />
 
     <ImageView
         android:id="@+id/mirror"
@@ -23,14 +23,27 @@
         android:layout_below="@+id/ffff"
         android:layout_centerHorizontal="true"
         android:src="@drawable/image_mirror" />
-<ProgressBar
-    android:visibility="gone"
-    android:id="@+id/progressbar"
-    android:layout_centerInParent="true"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" />
-        android:layout_marginTop="12dp"
-        android:src="@drawable/image_mirror"/>
+
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/louis_pivot_small"
+        android:layout_width="100sp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="70dp"
+        android:layout_marginRight="8sp"
+        android:layout_toRightOf="@+id/mirror"
+        android:src="@drawable/cloud_main" />
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+    android:layout_marginTop="12dp"
+    android:src="@drawable/image_mirror"/>
 
     <Button
         android:id="@+id/fragment_get_mood_camera_fab"
@@ -43,7 +56,7 @@
         android:src="@drawable/image_mirror"
         android:text="scan"
         android:textColor="#fff"
-        android:textSize="24sp"/>
+        android:textSize="24sp" />
 
 
 </RelativeLayout>
