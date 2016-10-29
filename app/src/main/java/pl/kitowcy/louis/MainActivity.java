@@ -99,7 +99,7 @@ public class MainActivity extends AppIntro {
                 for (Fragment fr : getSupportFragmentManager().getFragments()) {
                     if (position == 1 && fr instanceof GetMoodFragment) {
                         GetMoodFragment frag = ((GetMoodFragment) fr);
-                          frag.setupLouis();
+                        frag.setupLouis();
 
 
                     } else if (position == 2 && fr instanceof MyLocationFragment) {

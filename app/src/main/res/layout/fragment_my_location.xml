@@ -36,7 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_below="@+id/map_layout"
+        android:layout_alignParentStart="true"
         android:padding="16dp">
 
         <ImageView
@@ -66,13 +66,14 @@
             android:src="@drawable/icon_distance_3"/>
 
         <TextView
-            android:layout_below="@+id/far"
             android:id="@+id/title_my_location2"
+            style="@style/LargeTitleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/far"
             android:layout_centerHorizontal="true"
-            android:text="choose distance"
-            android:textSize="24sp"/>
+            android:padding="4dp"
+            android:text="choose distance"/>
 
     </RelativeLayout>
 

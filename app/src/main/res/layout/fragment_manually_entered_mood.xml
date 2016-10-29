@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_margin="12sp"
-        tools:text="I see you're"/>
+        android:text="I see you're"/>
 
     <TextView
 
@@ -35,7 +35,7 @@
         android:layout_below="@+id/surprise"
         android:max="100"
         android:padding="8sp"
-        app:markerColor="@color/colorPrimary"
+        app:markerColor="@color/seekbarinfo"
         app:markerTextAppearance="@style/MarkerCustomTextStyle"
         app:markerTextColor="#ffffff"
         app:smoothTracking="true"/>
@@ -58,7 +58,7 @@
         android:layout_below="@+id/happiness"
         android:max="100"
         android:padding="8sp"
-        app:markerColor="@color/colorPrimary"
+        app:markerColor="@color/seekbarinfo"
         app:markerTextAppearance="@style/MarkerCustomTextStyle"
         app:markerTextColor="#ffffff"
         app:smoothTracking="true"/>
@@ -81,7 +81,7 @@
         android:layout_below="@+id/disgust"
         android:max="100"
         android:padding="8sp"
-        app:markerColor="@color/colorPrimary"
+        app:markerColor="@color/seekbarinfo"
         app:markerTextAppearance="@style/MarkerCustomTextStyle"
         app:markerTextColor="#ffffff"
         app:smoothTracking="true"/>
@@ -105,7 +105,7 @@
         android:layout_below="@+id/sadness"
         android:max="100"
         android:padding="8sp"
-        app:markerColor="@color/colorPrimary"
+        app:markerColor="@color/seekbarinfo"
         app:markerTextAppearance="@style/MarkerCustomTextStyle"
         app:markerTextColor="#ffffff"
         app:smoothTracking="true"/>

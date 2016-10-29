@@ -17,7 +17,14 @@ public class PropositionItemsProvider {
         propItemList.add(getJazzFestiwal());
         propItemList.add(getRolki());
         propItemList.add(getMovie());
-
+        propItemList.add(getBeksinski());
+        propItemList.add(getJazzFestiwal());
+        propItemList.add(getRolki());
+        propItemList.add(getMovie());
+        propItemList.add(getBeksinski());
+        propItemList.add(getJazzFestiwal());
+        propItemList.add(getRolki());
+        propItemList.add(getMovie());
         return propItemList;
     }
 
