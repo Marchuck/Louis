@@ -6,6 +6,7 @@
     tools:context="pl.kitowcy.louis.facedetection.GetMoodFragment">
 
     <TextView
+        android:id="@+id/firr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -13,21 +14,35 @@
         android:text="First, I'll need some info about you"
         android:textSize="24sp" />
 
-    <ImageView
-        android:id="@+id/fragment_get_mood_camera_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="300sp"
-        android:layout_centerInParent="true"
-        android:layout_margin="@dimen/activity_horizontal_margin"
-        android:src="@drawable/image_mirror" />
-
     <TextView
+        android:id="@+id/ffff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/fragment_get_mood_camera_fab"
+        android:layout_below="@+id/firr"
         android:layout_centerHorizontal="true"
         android:layout_margin="8sp"
         android:text="Let me look at you I'll check your mood :-) "
         android:textSize="24sp" />
+
+    <ImageView
+        android:id="@+id/mirror"
+        android:layout_width="wrap_content"
+        android:layout_height="250sp"
+        android:layout_below="@+id/ffff"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/image_mirror" />
+
+    <Button
+
+        android:id="@+id/fragment_get_mood_camera_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mirror"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/bg_scan"
+        android:src="@drawable/image_mirror"
+        android:text="scan"
+        android:textColor="#fff" />
+
 
 </RelativeLayout>

@@ -50,7 +50,7 @@ public class GetMoodFragment extends Fragment {
 
     @OnClick(R.id.fragment_get_mood_camera_fab)
     void onCameraClick() {
-        if (!Dexter.isRequestOngoing()) return;
+        if (Dexter.isRequestOngoing()) return;
 
         Dexter.checkPermissions(new MultiplePermissionsListener() {
                                     @Override
@@ -190,7 +190,7 @@ public class GetMoodFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_get_mood, container, false);
         ButterKnife.bind(this, view);
         //  fab = (FloatingActionButton)v.findViewById(R.id.fragment_get_mood_camera_fab);
-        //   fab.setOnClickListener(v1 -> onCameraClick());
+        fab.setOnClickListener(v1 -> onCameraClick());
         return view;
     }
 
