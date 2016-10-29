@@ -5,6 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="location">#00bcd4</color>
 
+    <color name="camera_button">@android:color/holo_green_dark</color>
 
 
 </resources>

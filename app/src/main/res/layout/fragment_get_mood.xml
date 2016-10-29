@@ -1,48 +1,42 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/location"
-    tools:context="pl.kitowcy.louis.facedetection.GetMoodFragment">
-
-    <TextView
-        android:id="@+id/firr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="8sp"
-        android:text="First, I'll need some info about you"
-        android:textSize="24sp" />
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/holo_green_light"
+                tools:context="pl.kitowcy.louis.facedetection.GetMoodFragment">
 
     <TextView
         android:id="@+id/ffff"
+        style="@style/LargeTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/firr"
         android:layout_centerHorizontal="true"
-        android:layout_margin="8sp"
-        android:text="Let me look at you I'll check your mood :-) "
-        android:textSize="24sp" />
+        android:layout_margin="24dp"
+        android:gravity="center"
+        android:paddingTop="24dp"
+        android:text="Let me look at you I'll check your mood :-) "/>
 
     <ImageView
         android:id="@+id/mirror"
         android:layout_width="wrap_content"
-        android:layout_height="250sp"
+        android:layout_height="200dp"
         android:layout_below="@+id/ffff"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/image_mirror" />
+        android:layout_marginTop="12dp"
+        android:src="@drawable/image_mirror"/>
 
     <Button
-
         android:id="@+id/fragment_get_mood_camera_fab"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/mirror"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
         android:background="@drawable/bg_scan"
         android:src="@drawable/image_mirror"
         android:text="scan"
-        android:textColor="#fff" />
+        android:textColor="#fff"
+        android:textSize="24sp"/>
 
 
 </RelativeLayout>

@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.karumi.dexter.Dexter;
@@ -46,7 +47,7 @@ public class GetMoodFragment extends Fragment {
 
     Dialog permissionsDialog;
     @BindView(R.id.fragment_get_mood_camera_fab)
-    ImageView fab;
+    Button fab;
 
     @OnClick(R.id.fragment_get_mood_camera_fab)
     void onCameraClick() {
