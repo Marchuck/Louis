@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/holo_orange_dark">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_orange_dark">
 
     <TextView
         android:id="@+id/text1"
@@ -13,7 +13,7 @@
         android:layout_margin="24dp"
         android:gravity="center"
         android:paddingTop="24dp"
-        android:text="@string/name_fragment_hello"/>
+        android:text="@string/name_fragment_hello" />
 
     <TextView
         android:id="@+id/text2"
@@ -24,9 +24,10 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="24dp"
         android:gravity="center"
-        android:text="@string/name_fragment_name_input"/>
+        android:text="@string/name_fragment_name_input" />
 
     <EditText
+        android:id="@+id/edit_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@id/text2"
@@ -34,6 +35,17 @@
         android:layout_below="@id/text2"
         android:gravity="center"
         android:textColor="@android:color/white"
-        android:textSize="24sp"/>
+        android:layout_marginBottom="100sp"
+        android:textSize="24sp" />
+
+    <ImageView
+        android:padding="30sp"
+        android:id="@+id/louis_pivot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_name"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="8sp"
+        android:src="@drawable/cloud_main" />
 
 </RelativeLayout>
