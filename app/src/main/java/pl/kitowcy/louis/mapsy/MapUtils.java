@@ -33,6 +33,8 @@ public class MapUtils {
 
     public static rx.Observable<Boolean> setupGoogleMap(GoogleMap map, Context ctx) {
         return Observable.fromCallable(() -> {
+            map.setMyLocationEnabled(true);
+
             try {
                 boolean success = map.setMapStyle(
                         MapStyleOptions.loadRawResourceStyle(ctx, R.raw.style_json));

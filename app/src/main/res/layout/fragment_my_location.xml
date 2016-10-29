@@ -65,6 +65,15 @@
             android:layout_alignParentRight="true"
             android:src="@drawable/icon_distance_3"/>
 
+        <TextView
+            android:layout_below="@+id/far"
+            android:id="@+id/title_my_location2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="choose distance"
+            android:textSize="24sp"/>
+
     </RelativeLayout>
 
 </RelativeLayout>

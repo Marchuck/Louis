@@ -83,7 +83,7 @@ public class MyLocationFragment extends Fragment implements MultiplePermissionsL
 
     private void doOnLocationReceived() {
         progressbar_location.setVisibility(View.GONE);
-
+        Log.d(TAG, "doOnLocationReceived: " + String.valueOf(myPosition));
         Log.d(TAG, "onReceive: new Location");
         CameraPosition cameraPosition = new CameraPosition(myPosition, 11, 60, 12);
         final CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
