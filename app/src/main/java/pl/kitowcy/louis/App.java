@@ -10,11 +10,13 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
  * Project "Louis"
- * <p/>
+ * <p>
  * Created by Lukasz Marczak
  * on 28.10.16.
  */
 public class App extends Application {
+    public static int currentPage = 0;
+
     @Override
     public void onCreate() {
         super.onCreate();

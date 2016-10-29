@@ -1,32 +1,35 @@
 package pl.kitowcy.louis;
 
-import android.Manifest;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
 import android.util.Log;
 
 import pl.kitowcy.louis.facedetection.GetMoodFragment;
 import pl.kitowcy.louis.facedetection.GetMoodFragmentBase;
+import pl.kitowcy.louis.mapsy.MyLocationFragment;
+import pl.kitowcy.louis.utils.Is;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 
 public class MainActivity extends AppIntro {
+
     public static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Log.d(TAG, "onCreate: ");
         addSlide(NameFragment.newInstance());
+
         addSlide(GetMoodFragmentBase.newInstance());
+
+        addSlide(MyLocationFragment.newInstance());
+
         addSlide(
                 AppIntroFragment.newInstance("Hello, I'm Louis", "We need to know each other C:",
                         android.R.drawable.ic_media_play, ContextCompat.getColor(this, android.R.color.holo_orange_dark)));
@@ -59,6 +62,31 @@ public class MainActivity extends AppIntro {
             GetMoodFragment fragment1 = ((GetMoodFragment) fragment);
             fragment1.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    public void onPageSelected(boolean is) {
+        if (is) {
+            int position = App.currentPage;
+            Log.d(TAG, "onPageSelected: " + position);
+            if (getSupportFragmentManager() != null)
+                if (Is.nonEmpty(getSupportFragmentManager().getFragments()))
+                    for (Fragment fr : getSupportFragmentManager().getFragments()) {
+                        if (position == 1 && fr instanceof GetMoodFragment) {
+                            GetMoodFragment frag = ((GetMoodFragment) fr);
+
+                        } else if (position == 2 && fr instanceof MyLocationFragment) {
+                            MyLocationFragment frag = ((MyLocationFragment) fr);
+                            frag.initOnce();
+                        }
+                    }
+        }
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        super.onPageSelected(position);
+        App.currentPage = position;
+        onPageSelected(true);
 
     }
 }

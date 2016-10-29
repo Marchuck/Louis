@@ -1,0 +1,67 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="40sp"
+    android:layout_marginLeft="40sp"
+    android:layout_marginRight="40sp"
+    android:layout_marginTop="40sp"
+    tools:context="pl.kitowcy.louis.mapsy.MyLocationFragment">
+
+
+    <ProgressBar
+        android:id="@+id/progressbar_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/map_layout"
+        android:layout_width="match_parent"
+        android:layout_height="300sp" />
+
+    <RelativeLayout
+        android:id="@+id/changeRadiusFragment"
+        android:layout_width="match_parent"
+        android:layout_height="100sp"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/map_layout">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8sp"
+            android:textSize="22sp"
+            tools:text="xd XD :DDDDD" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title"
+            android:padding="8sp"
+            tools:text="lorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsum" />
+
+        <TextView
+            android:id="@+id/address"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/description"
+            android:textColor="@color/colorPrimary"
+            tools:text="ul Jana Pawła II" />
+
+        <TextView
+            android:id="@+id/hour"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/description"
+            android:textColor="@color/colorPrimary"
+            tools:text="godz. 19.00" />
+
+    </RelativeLayout>
+</RelativeLayout>
