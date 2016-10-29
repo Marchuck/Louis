@@ -44,6 +44,7 @@ public class GetMoodFragment extends Fragment {
         Dexter.checkPermissions(new MultiplePermissionsListener() {
                                     @Override
                                     public void onPermissionsChecked(MultiplePermissionsReport report) {
+                                        Log.d(TAG, "onPermissionsChecked: ");
                                         Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                                         getActivity().startActivityForResult(takePicture, PHOTO_TAKE);
                                         //zero can be replaced with any action code
