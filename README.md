@@ -6,6 +6,7 @@
 <img src="https://github.com/Marchuck/Louis/blob/master/app/src/main/res/drawable/screen_1.png" height="350">
 <img src="https://github.com/Marchuck/Louis/blob/master/app/src/main/res/drawable/screen_2.png" height="350">
 <img src="https://github.com/Marchuck/Louis/blob/master/app/src/main/res/drawable/screen_3_5.png" height="350">
+<img src="https://github.com/Marchuck/Louis/blob/master/app/src/main/res/drawable/screen_4_5.png" height="350">
 <img src="https://github.com/Marchuck/Louis/blob/master/app/src/main/res/drawable/screen_3.png" height="350">
 <img src="https://github.com/Marchuck/Louis/blob/master/app/src/main/res/drawable/screen_4.png" height="350">
 <img src="https://github.com/Marchuck/Louis/blob/master/app/src/main/res/drawable/screen_5.png" height="350">
