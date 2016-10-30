@@ -147,12 +147,9 @@ public class GetMoodFragment extends Fragment {
                     .subscribeOn(Schedulers.newThread())
                     .timeout(8, TimeUnit.SECONDS)
                     .take(1)
-                    .onErrorReturn(throwable -> new FaceAnalysis[]{
-                            new FaceAnalysis(
-                                    new FaceRectangle(),
-                                    new Scores(0, 0, 0, 0, 30, 10, 5, 55).scaleWith(0.001f)
-                            )
-                    })
+                    .onErrorReturn(throwable ->
+                            new FaceAnalysis[]{new FaceAnalysis(new FaceRectangle(),
+                                    new Scores(0, 0, 0, 0, 30, 10, 5, 55).scaleWith(0.001f))})
                     .subscribe(faceAnalysises -> {
                         Log.d(TAG, "onNext: ");
                         for (FaceAnalysis analysis : faceAnalysises) {
