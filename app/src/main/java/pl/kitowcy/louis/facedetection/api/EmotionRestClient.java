@@ -29,7 +29,10 @@ import rx.Subscriber;
 
 
 /**
- * Created by David Pacioianu on 1/12/16.
+ * Project "Louis"
+ * <p>
+ * Created by Lukasz Marczak
+ * on 1/12/16.
  */
 public class EmotionRestClient {
     public static final String TAG = EmotionRestClient.class.getSimpleName();
@@ -45,9 +48,9 @@ public class EmotionRestClient {
         return client;
     }
 
-    public synchronized static void init(Context context, String subscriptionKey) {
+    public synchronized static void init(Context context) {
         if (client == null) {
-            client = new EmotionRestClient(context, subscriptionKey);
+            client = new EmotionRestClient(context, System.getProperty("microsoft_emotion_key"));
         }
     }
 

@@ -53,6 +53,7 @@ public class Scores implements Parcelable {
         return anger;
     }
 
+
     /**
      * @param anger The anger
      */

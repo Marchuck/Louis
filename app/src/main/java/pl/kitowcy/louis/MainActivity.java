@@ -2,20 +2,25 @@ package pl.kitowcy.louis;
 
 import android.Manifest;
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import pl.kitowcy.louis.facedetection.GetMoodFragment;
 import pl.kitowcy.louis.facedetection.GetMoodFragmentBase;
 import pl.kitowcy.louis.mapsy.MyLocationFragment;
+import pl.kitowcy.louis.meetup.MeetupClient;
+import pl.kitowcy.louis.meetup.model.EventsResponse;
 import pl.kitowcy.louis.utils.Is;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 import com.github.paolorotolo.appintro.AppIntro;
-import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -56,6 +61,20 @@ public class MainActivity extends AppIntro {
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_COARSE_LOCATION,
                 Manifest.permission.ACCESS_WIFI_STATE);
+
+        MeetupClient client = new MeetupClient();
+        client.getEvents("ny-tech", true)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(eventsResponse -> {
+                    Log.i(TAG, "call: " + eventsResponse);
+                    Toast.makeText(MainActivity.this, eventsResponse.eventResults.get(0).name,
+                            Toast.LENGTH_SHORT).show();
+                }, throwable -> {
+                    Log.e(TAG, "error: ", throwable);
+                    Toast.makeText(MainActivity.this, "error", Toast.LENGTH_SHORT).show();
+                });
+
     }
 
     @Override
@@ -91,6 +110,7 @@ public class MainActivity extends AppIntro {
     }
 
     public void onPageSelected() {
+
 
         int position = App.currentPage;
         Log.d(TAG, "onPageSelected: " + position);

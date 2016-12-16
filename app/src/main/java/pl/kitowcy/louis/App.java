@@ -19,18 +19,24 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
  */
 public class App extends Application {
     public static int currentPage = 0;
-    public static App getApp(Context c){
-        return (App)c.getApplicationContext();
+
+    public static App getApp(Context c) {
+        return (App) c.getApplicationContext();
     }
-    public static App getApp(Fragment c){
-        return (App)c.getActivity().getApplicationContext();
+
+    public static App getApp(Fragment c) {
+        return (App) c.getActivity().getApplicationContext();
     }
+
     public Scores scores;
+
     @Override
     public void onCreate() {
         super.onCreate();
+
+        LocalProperties.install(this);
         Dexter.initialize(this);
-        EmotionRestClient.init(this, getString(R.string.microsoft_emotion_key));
+        EmotionRestClient.init(this);
         setFont();
     }
 

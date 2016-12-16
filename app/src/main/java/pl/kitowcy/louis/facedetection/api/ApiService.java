@@ -1,14 +1,17 @@
 package pl.kitowcy.louis.facedetection.api;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import okhttp3.RequestBody;
 import pl.kitowcy.louis.facedetection.api.models.FaceAnalysis;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 /**
  * Created by David Pacioianu on 1/12/16.
@@ -28,4 +31,5 @@ public interface ApiService {
             @Header("Ocp-Apim-Subscription-Key") String subscriptionKey,
             @Body JsonObject url
     );
+
 }

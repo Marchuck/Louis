@@ -138,6 +138,7 @@ public class GetMoodFragment extends Fragment {
             Log.i(TAG, "onActivityResult: xDDD");
             progress.setVisibility(View.VISIBLE);
             Context ctx = getActivity();
+
             Common.uriToDrawable(ctx, selectedImage)
                     .flatMap(Common::drawableToBitmap)
                     .flatMap(Common::scaleBitmap)
