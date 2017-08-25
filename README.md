@@ -1,9 +1,7 @@
 # Louis
 1st prize at Kraków Miasto Kreatywne 2016
 
-
-![Optional Text](../master/app/src/main/res/drawable/screen_1.png)
-
+<p>
 <img src="https://github.com/Marchuck/Louis/blob/master/app/src/main/res/drawable/screen_1.png" height="350">
 <img src="https://github.com/Marchuck/Louis/blob/master/app/src/main/res/drawable/screen_2.png" height="350">
 <img src="https://github.com/Marchuck/Louis/blob/master/app/src/main/res/drawable/screen_3_5.png" height="350">
@@ -11,7 +9,7 @@
 <img src="https://github.com/Marchuck/Louis/blob/master/app/src/main/res/drawable/screen_3.png" height="350">
 <img src="https://github.com/Marchuck/Louis/blob/master/app/src/main/res/drawable/screen_4.png" height="350">
 <img src="https://github.com/Marchuck/Louis/blob/master/app/src/main/res/drawable/screen_5.png" height="350">
-
+</p>
 
 App uses Microsoft Cognitive Services in order to get mood from taken selfie
 
